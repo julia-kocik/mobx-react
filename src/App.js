@@ -5,11 +5,16 @@ import {NoteForm} from './NoteForm';
 
 function App() {
   const notesStore = useNotesStore();
+  console.log(JSON.stringify(notesStore.notes))
   return useObserver(() => (
     <div className="App">
     <ul>
      {notesStore.notes.map(note => (
-       <li onClick={() => notesStore.removeNote(note.id)} key={note.id}>{note.text}</li>
+       <li key={note.id}>
+         <div>{note.text}</div>
+         <button onClick={() => notesStore.removeNote(note.id)}>Remove</button>
+           <button className={note.done ? 'green' : 'red'} onClick={() => notesStore.markDone(note.id)}>{note.done ? 'Done' : 'Not done yet'}</button>
+       </li>
      ))}
     </ul>
     <NoteForm></NoteForm>

@@ -8,6 +8,7 @@ function App() {
   console.log(JSON.stringify(notesStore.notes))
   return useObserver(() => (
     <div className="App">
+    <NoteForm></NoteForm>
     <ul>
      {notesStore.notes.map(note => (
        <li key={note.id}>
@@ -17,7 +18,6 @@ function App() {
        </li>
      ))}
     </ul>
-    <NoteForm></NoteForm>
     </div>
   ));
 }
